@@ -30,14 +30,13 @@ class MyApp(QMainWindow):
         }
 
         try:
-
             response = requests.post(url, json=payload)
 
             if response.status_code == 200:
-
                 data = response.json()
 
-                self.ui.txt_ciphertext.setText(
+                # ✅ SỬA Ở ĐÂY
+                self.ui.txt_cipher.setText(
                     data["encrypted_message"]
                 )
 
@@ -61,16 +60,15 @@ class MyApp(QMainWindow):
         url = "http://127.0.0.1:5000/api/caesar/decrypt"
 
         payload = {
-            "cipher_text": self.ui.txt_ciphertext.toPlainText(),
+            # ✅ SỬA Ở ĐÂY
+            "cipher_text": self.ui.txt_cipher.toPlainText(),
             "key": self.ui.txt_key.text()
         }
 
         try:
-
             response = requests.post(url, json=payload)
 
             if response.status_code == 200:
-
                 data = response.json()
 
                 self.ui.txt_plaintext.setText(
